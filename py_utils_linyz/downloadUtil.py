@@ -19,7 +19,7 @@ class DownloadUtil():
         if not name:
             name = urlPath.stem
         fileName = name + extension
-        path = basePath.parent.joinpath(fileName)
+        path = basePath.joinpath(fileName)
         if epubResponse.ok:
             with open(path, 'wb') as epubFile:
                 total_length = epubResponse.headers.get('content-length')

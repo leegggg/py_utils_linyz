@@ -100,7 +100,7 @@ class BaiduYunUtil():
 
     def saveLog(self, path: Path, log: dict, status: str, show=False):
         if show:
-            print(status, end="\t")
+            print(status, end=" ")
         log = updateLog(
             log=log,
             status=status,
@@ -117,11 +117,11 @@ class BaiduYunUtil():
 
         if skipOk and log.get('status') == 'ok':
             if show:
-                print("Already done", end="\t")
+                print("Already done", end=" ")
             return log
         if skipDead and log.get('status') == 'dead':
             if show:
-                print("Dead link", end="\t")
+                print("Dead link", end=" ")
             return log
 
         self.firefox.get(url)

@@ -23,6 +23,8 @@ class DownloadUtil():
         if epubResponse.ok:
             with open(path, 'wb') as epubFile:
                 total_length = epubResponse.headers.get('content-length')
+                if total_length:
+                    total_length = int(total_length)
                 chunks = epubResponse.iter_content(chunk_size=1024)
                 if show and total_length:
                     nbBlocks = int(total_length) / 1024 + 1

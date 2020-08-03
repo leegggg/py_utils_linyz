@@ -34,6 +34,6 @@ infoLinkRegexp = re.compile(r"https://kindleer.com/([^/\\%]+).html")
 BAIDU_YUN_REGEXP = re.compile(r"https?://pan.baidu.com/s/([a-zA-Z0-9_\-]+)")
 BAIDU_YUN_FORMAT = "https://pan.baidu.com/s/{}"
 BAIDU_YUN_SAVE_LOG = dataBasePath.joinpath('baiduyun_log.json')
-BAIDU_YUN_SEC_REGEXP = re.compile(r"提取码：[0-9a-z]{4}")
+BAIDU_YUN_SEC_REGEXP = re.compile(r"提取码：([0-9a-z]){4}")
 BAIDU_YUN_DATA_PATH = Path("data/baiduyun")
 BAIDU_YUN_LOG_FILE_NAME = "baidu_log.json"

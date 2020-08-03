@@ -108,12 +108,21 @@ class BaiduYunUtil():
             title=self.firefox.title)
         saveLog(path, log)
 
-    def saveToBaiduYun(self, index: str, sec: str, show=False):
+    def saveToBaiduYun(self, index: str, sec: str, show=False, skipOk=True, skipDead=True):
         url = makeBaiduUrl(index)
         dataDir = self.logPath.joinpath(index)
         os.makedirs(dataDir, exist_ok=True)
         logPath = dataDir.joinpath(BAIDU_YUN_LOG_FILE_NAME)
         log = loadLog(logPath)
+
+        if skipOk and log.get('status') == 'ok':
+            if show:
+                print("Already done", end="\t")
+            return log
+        if skipDead and log.get('status') == 'dead':
+            if show:
+                print("Dead link", end="\t")
+            return log
 
         self.firefox.get(url)
         self.saveLog(logPath, log, 'open', show)

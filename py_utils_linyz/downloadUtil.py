@@ -12,10 +12,15 @@ class DownloadUtil():
     def __init__(self):
         self.req: Session = req
 
-    def downLoadData(self, url, basePath: Path, name=None, extension=None, overwrite=True, show=False):
+    def downLoadData(
+            self, url, basePath: Path, name=None, extension=None,
+            overwrite=True, show=False, delayFileParse=True):
         from clint.textui import progress
-        epubResponse = self.req.get(url, stream=True)
-        realUrl = epubResponse.url
+        epubResponse = None
+        realUrl = url
+        if delayFileParse:
+            epubResponse = self.req.get(url, stream=True)
+            realUrl = epubResponse.url
         urlPath = Path(urllib.parse.urlparse(realUrl).path)
         if not extension:
             extension = urlPath.suffix
@@ -29,6 +34,8 @@ class DownloadUtil():
                 if show:
                     print("skip for not overwrite")
                 return realUrl
+        if not epubResponse:
+            epubResponse = self.req.get(url, stream=True)
         if epubResponse.ok:
             with open(path, 'wb') as epubFile:
                 total_length = epubResponse.headers.get('content-length')

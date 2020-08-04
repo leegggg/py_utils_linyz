@@ -39,7 +39,7 @@ class DownloadUtil():
                     nbBlocks = int(total_length) / 1024 + 1
                     chunks = progress.bar(
                         it=chunks,
-                        expected_size=nbBlocks, label="{}\t".format(fileName[]))
+                        expected_size=nbBlocks, label="{}\t".format(fileName[:16]))
                 for chunk in chunks:
                     if chunk:
                         epubFile.write(chunk)

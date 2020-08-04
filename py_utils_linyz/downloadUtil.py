@@ -24,7 +24,7 @@ class DownloadUtil():
         fileName = name + extension
         fileName = unquote(fileName)
         path = basePath.joinpath(fileName)
-        if overwrite:
+        if not overwrite:
             if path.is_file() or path.is_dir():
                 if show:
                     print("skip for not overwrite")

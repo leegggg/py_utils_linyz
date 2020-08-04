@@ -1,6 +1,7 @@
 # py_utils_linyz.saveToBaiduYun
 
 import json
+from os import spawnl
 from py_utils_linyz.seleniumUtils import blockFindByXpath
 import os
 
@@ -138,9 +139,19 @@ class BaiduYunUtil():
 
         secInput.send_keys(sec)
         secInput.send_keys(Keys.ENTER)
-
-        saveSpan = blockFindByXpath(self.firefox, "//span[contains(text(),'保存到网盘')]", 600)
         self.saveLog(logPath, log, 'open_url', show)
+
+        saveSpan = blockFindByXpath(self.firefox, "//span[contains(text(),'保存到网盘')]", 50)
+        if not saveSpan:
+            if blockFindByXpath(self.firefox, "//div[contains(text(),'提取码错误')]", 50):
+                self.saveLog(logPath, log, 'sec_error', show)
+                if not saveSpan:
+                    return log
+
+        if not saveSpan:
+            saveSpan = blockFindByXpath(self.firefox, "//span[contains(text(),'保存到网盘')]", 200)
+            self.saveLog(logPath, log, 'wait_open', show)
+
         if not saveSpan:
             return log
 

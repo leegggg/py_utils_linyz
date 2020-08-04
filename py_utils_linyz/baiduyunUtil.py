@@ -174,13 +174,14 @@ class BaiduYunUtil():
                     break
                 saveSpan.click()
                 self.saveLog(logPath, log, 'click_open', show)
-                targetDiv = blockFindByXpath(self.firefox, "//span[contains(text(),'00000asedsswdfs')]", 10)
+                targetDiv = blockFindByXpath(
+                    self.firefox, "//span[contains(text(),'{}')]".format(self.tempDirKeyWord), 10)
         except Exception:
             pass
 
         try:
             targetDiv.click()
-            blockFindByXpath(self.firefox, "//span[contains(text(),'0000UUIDaawdsasswvf')]", 200)
+            blockFindByXpath(self.firefox, "//span[contains(text(),'{}')]".format(self.tempDirKeyWord), 200)
             self.saveLog(logPath, log, 'find_target', show)
             newDirInput = None
             for _ in range(20):

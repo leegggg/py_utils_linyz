@@ -2,7 +2,10 @@ import urllib.parse
 from pathlib import Path
 
 from requests.sessions import Session
-from .common import req
+from .common import dataBasePath, req
+from requests.utils import unquote
+
+# py_utils_linyz.downloadUtil
 
 
 class DownloadUtil():
@@ -19,6 +22,7 @@ class DownloadUtil():
         if not name:
             name = urlPath.stem
         fileName = name + extension
+        fileName = unquote(fileName)
         path = basePath.joinpath(fileName)
         if overwrite:
             if path.is_file() or path.is_dir():
@@ -35,7 +39,7 @@ class DownloadUtil():
                     nbBlocks = int(total_length) / 1024 + 1
                     chunks = progress.bar(
                         it=chunks,
-                        expected_size=nbBlocks, label="{}\t".format(fileName))
+                        expected_size=nbBlocks, label="{}\t".format(fileName[]))
                 for chunk in chunks:
                     if chunk:
                         epubFile.write(chunk)
@@ -43,3 +47,10 @@ class DownloadUtil():
                 if total_length and path.stat().st_size < total_length:
                     raise IOError()
         return realUrl
+
+
+if __name__ == "__main__":
+    downloadUtil = DownloadUtil()
+    downloadUtil.downLoadData(
+        url='https://pan.18asmr.club/public/uploads/20200722/1/养猪妹-5分钟闻臭弟弟的臭耳朵.mp3',
+        basePath=dataBasePath, show=True, overwrite=False)

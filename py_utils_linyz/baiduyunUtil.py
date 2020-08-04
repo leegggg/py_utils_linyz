@@ -19,13 +19,18 @@ class NonBaiduYunUrlException(Exception):
 
 def findBaiduYunSec(txt):
     sec = None
+    match = re.compile(r"百度提取码[：:] ?([0-9a-z]{4})").search(txt)
+    if match:
+        sec = match.groups()[0]
+        return sec
     match = BAIDU_YUN_SEC_REGEXP.search(txt)
     if match:
         sec = match.groups()[0]
-    else:
-        match = re.compile("[^a-z0-9]([a-z0-9]{4})[^a-z0-9]").search(txt)
-        if match:
-            sec = match.groups()[0]
+        return sec
+    match = re.compile("[^a-z0-9]([a-z0-9]{4})[^a-z0-9]").search(txt)
+    if match:
+        sec = match.groups()[0]
+        return sec
     return sec
 
 

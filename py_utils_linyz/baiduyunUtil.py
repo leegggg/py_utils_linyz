@@ -1,7 +1,6 @@
 # py_utils_linyz.saveToBaiduYun
 
 import json
-from os import spawnl
 from py_utils_linyz.seleniumUtils import blockFindByXpath
 import os
 

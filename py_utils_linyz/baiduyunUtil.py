@@ -113,7 +113,7 @@ class BaiduYunUtil():
             title=self.firefox.title)
         saveLog(path, log)
 
-    def saveToBaiduYun(self, index: str, sec: str, show=False, skipOk=True, skipDead=True):
+    def saveToBaiduYun(self, index: str, sec: str, show=False, skipOk=True, skipDead=True, skipSecError=True):
         url = makeBaiduUrl(index)
         dataDir = self.logPath.joinpath(index)
         os.makedirs(dataDir, exist_ok=True)
@@ -127,6 +127,10 @@ class BaiduYunUtil():
         if skipDead and log.get('status') == 'dead':
             if show:
                 print("Dead link", end=" ")
+            return log
+        if skipSecError and log.get('status') == 'sec_error':
+            if show:
+                print("Sec is not correct", end=" ")
             return log
 
         self.firefox.get(url)

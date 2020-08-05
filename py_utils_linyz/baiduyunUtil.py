@@ -185,7 +185,7 @@ class BaiduYunUtil():
 
         try:
             targetDiv.click()
-            blockFindByXpath(self.firefox, "//span[contains(text(),'{}')]".format(self.tempDirKeyWord), 200)
+            blockFindByXpath(self.firefox, "//span[contains(text(),'{}')]".format(self.uuidKeyWord), 200)
             self.saveLog(logPath, log, 'find_target', show)
             newDirInput = None
             for _ in range(20):

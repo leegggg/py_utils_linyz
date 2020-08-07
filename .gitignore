@@ -2,6 +2,7 @@ env
 data/debug
 data/screencaptmp.png
 data/conf.json
+/localUtils.py
 /data
 .vscode
 # Byte-compiled / optimized / DLL files

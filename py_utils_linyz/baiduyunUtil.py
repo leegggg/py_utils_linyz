@@ -119,6 +119,7 @@ class BaiduYunUtil():
         os.makedirs(dataDir, exist_ok=True)
         logPath = dataDir.joinpath(BAIDU_YUN_LOG_FILE_NAME)
         log = loadLog(logPath)
+        '//*[@id="ayujnLQ"]'
 
         if skipOk and log.get('status') == 'ok':
             if show:
@@ -138,7 +139,9 @@ class BaiduYunUtil():
 
         secInput = None
         try:
-            secInput = self.firefox.find_element_by_id("ts8E18")
+            # secInput = self.firefox.find_element_by_id(self.secInputId)
+            secInput = self.firefox.find_element_by_xpath(
+                '//dl[contains(@class, "pickpw")]/dd[contains(@class, "input-area")]/input')
         except Exception:
             pass
         if not secInput:
@@ -165,7 +168,7 @@ class BaiduYunUtil():
 
         # Select All
         try:
-            selectAllDiv = self.firefox.find_element_by_class_name("zbyDdwb")
+            selectAllDiv = self.firefox.find_element_by_class_name(self.selectAllId)
             selectAllDiv.click()
             self.saveLog(logPath, log, 'selected_all', show)
         except Exception:

@@ -52,6 +52,8 @@ class DownloadUtil():
                         epubFile.write(chunk)
                         epubFile.flush()
                 if total_length and path.stat().st_size < total_length:
+                    import os
+                    os.remove(path)
                     raise IOError()
         return realUrl
 

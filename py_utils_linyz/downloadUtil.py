@@ -42,11 +42,14 @@ class DownloadUtil():
                 if total_length:
                     total_length = int(total_length)
                 chunks = epubResponse.iter_content(chunk_size=1024)
+                hint = fileName
+                if len(fileName) > 16:
+                    hint = "{}...{}\t".format(fileName[:7], fileName[-7:])
                 if show and total_length:
                     nbBlocks = int(total_length) / 1024 + 1
                     chunks = progress.bar(
                         it=chunks,
-                        expected_size=nbBlocks, label="{}...{}\t".format(fileName[:12], fileName[-12:]))
+                        expected_size=nbBlocks, label=hint)
                 for chunk in chunks:
                     if chunk:
                         epubFile.write(chunk)

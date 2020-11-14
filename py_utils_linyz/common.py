@@ -12,8 +12,8 @@ with requests.Session() as req:
         'User-Agent': USER_AGENT_UC_FF_59_WIN
     }
     req.proxies = {
-        'https': 'http://192.168.200.1:7890',
-        'http': 'http://192.168.200.1:7890'
+        'https': 'http://clash.srv.linyz.net:7890',
+        'http': 'http://clash.srv.linyz.net:7890'
     }
     req.headers = REQUEST_HEADERS
 

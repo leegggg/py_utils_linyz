@@ -3,6 +3,8 @@ from selenium.webdriver.common.proxy import Proxy, ProxyType
 from pathlib import Path
 import re
 
+PROXY_SERVER = "http://clash.srv.linyz.net:7890"
+
 with requests.Session() as req:
     USER_AGENT_UC_FF_59_WIN = \
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0"
@@ -12,14 +14,14 @@ with requests.Session() as req:
         'User-Agent': USER_AGENT_UC_FF_59_WIN
     }
     req.proxies = {
-        'https': 'http://clash.srv.linyz.net:7890',
-        'http': 'http://clash.srv.linyz.net:7890'
+        'https': PROXY_SERVER,
+        'http': PROXY_SERVER
     }
     req.headers = REQUEST_HEADERS
 
 proxy = Proxy({
     'proxyType': ProxyType.MANUAL,
-    'httpProxy': 'http://192.168.200.1:7890',
+    'httpProxy': PROXY_SERVER,
     'noProxy': ''
 })
 

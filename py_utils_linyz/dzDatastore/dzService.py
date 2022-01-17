@@ -158,3 +158,7 @@ class DzService():
             if link:
                 dzId = -1 * link.dzId
         return dzId
+
+    def getDzIdBySiteId(self, siteId) -> int:
+        session = self.Session()
+        return session.query(DzLinkDict.dzId).filter(DzLinkDict.siteId == siteId).scalar()

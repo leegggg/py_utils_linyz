@@ -164,6 +164,7 @@ class DzService():
 
     def getDzIdBySiteId(self, siteId) -> int:
         session = self.Session()
+        dzid = None
         with session.begin():
             dzid = session.query(DzLinkDict.dzId).filter(DzLinkDict.siteId == siteId).scalar()
         return dzid

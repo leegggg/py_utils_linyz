@@ -16,6 +16,17 @@ Base = declarative_base()
 
 
 class DzLinkDict(Base):
+    """ddl
+    CREATE TABLE `dzlnk_dict` (
+        `site_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+        `site_id_match` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+        `dz_id` int(10) unsigned DEFAULT NULL,
+        `comment` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+        `mod_date` datetime DEFAULT NULL,
+        `create_date` datetime DEFAULT NULL,
+        PRIMARY KEY (`site_id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+    """
     __tablename__ = 'dzlnk_dict'
     siteId = Column(String(255), primary_key=True, name="site_id")
     siteIdMatch = Column(String(255), name="site_id_match")
@@ -234,10 +245,10 @@ class DzForumPost(Base):
     port = Column(name="port", type_=Integer, default=0)
     invisible = Column(name="invisible", type_=Integer, default=0)
     anonymous = Column(name="anonymous", type_=Integer, default=0)
-    usesig = Column(name="usesig", type_=Integer, default=0)
+    usesig = Column(name="usesig", type_=Integer, default=1)
     htmlon = Column(name="htmlon", type_=Integer, default=0)
     bbcodeoff = Column(name="bbcodeoff", type_=Integer, default=0)
-    smileyoff = Column(name="smileyoff", type_=Integer, default=0)
+    smileyoff = Column(name="smileyoff", type_=Integer, default=-1)
     parseurloff = Column(name="parseurloff", type_=Integer, default=0)
     attachment = Column(name="attachment", type_=Integer, default=0)
     rate = Column(name="rate", type_=Integer, default=0)

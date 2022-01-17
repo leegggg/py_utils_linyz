@@ -153,10 +153,13 @@ class DzService():
                 link.siteId = siteId
                 session.add(link)
                 dzId = link.dzId
-        except IntegrityError:
+        except IntegrityError as e:
+            e
             link: DzLinkDict = session.query(DzLinkDict).filter(DzLinkDict.siteId == siteId).one_or_none()
             if link:
                 dzId = -1 * link.dzId
+            else:
+                pass
         return dzId
 
     def getDzIdBySiteId(self, siteId) -> int:

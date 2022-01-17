@@ -55,10 +55,13 @@ class DzService():
                 link.siteId = siteId
                 session.add(link)
                 dzId = link.dzId
-        except IntegrityError:
-            link: DzLinkDict = session.query(DzLinkDict).filter(DzLinkDict.siteId == siteId).one_or_none()
-            if link:
+        except IntegrityError as e:
+            e
+            dzId = self.getDzIdBySiteId(self, siteId)
+            if dzId:
                 dzId = -1 * link.dzId
+            else:
+                pass
         return dzId
 
     def postDzThread(self, siteId, thread: DzForumThread, siteIdMatch=None) -> int:
@@ -85,10 +88,13 @@ class DzService():
                 link.siteId = siteId
                 session.add(link)
                 dzId = link.dzId
-        except IntegrityError:
-            link: DzLinkDict = session.query(DzLinkDict).filter(DzLinkDict.siteId == siteId).one_or_none()
-            if link:
+        except IntegrityError as e:
+            e
+            dzId = self.getDzIdBySiteId(self, siteId)
+            if dzId:
                 dzId = -1 * link.dzId
+            else:
+                pass
         return dzId
 
     def postDzPost(self, siteId, post: DzForumPost, siteIdMatch=None) -> int:
@@ -124,9 +130,11 @@ class DzService():
                 dzId = link.dzId
         except IntegrityError as e:
             e
-            link: DzLinkDict = session.query(DzLinkDict).filter(DzLinkDict.siteId == siteId).one_or_none()
-            if link:
+            dzId = self.getDzIdBySiteId(self, siteId)
+            if dzId:
                 dzId = -1 * link.dzId
+            else:
+                pass
         return dzId
 
     def postDzMember(self, siteId, member: DzCommonMember, siteIdMatch=None) -> int:
@@ -139,10 +147,9 @@ class DzService():
                       None if failed.
 
         """
-        session = self.Session()
         dzId = None
         try:
-            with session.begin():
+            with self.Session.begin() as session:
                 session.add(member)
                 session.flush()
                 link = DzLinkDict()
@@ -155,8 +162,8 @@ class DzService():
                 dzId = link.dzId
         except IntegrityError as e:
             e
-            link: DzLinkDict = session.query(DzLinkDict).filter(DzLinkDict.siteId == siteId).one_or_none()
-            if link:
+            dzId = self.getDzIdBySiteId(self, siteId)
+            if dzId:
                 dzId = -1 * link.dzId
             else:
                 pass

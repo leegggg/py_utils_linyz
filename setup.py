@@ -9,7 +9,7 @@ setup(
     author_email='yizhou.lin@outlook.com',
     license='Apache 2.0',
     packages=find_packages(),
-    packages=['py_utils_linyz'],
+    # packages=['py_utils_linyz'],
     zip_safe=False,
     install_requires=[
         "requests",

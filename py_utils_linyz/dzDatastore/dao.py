@@ -16,6 +16,8 @@ Base = declarative_base()
 
 
 class BaseDao(Base):
+    __abstract__ = True
+
     def as_dict(self):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 

@@ -31,7 +31,7 @@ class DzService():
             return False
         return True
 
-    def postDzForum(self, siteId, forum: DzForum) -> int:
+    def postDzForum(self, siteId, forum: DzForum, siteIdMatch=None) -> int:
         """postDzForum object.
         :param siteId: siteId for the object unique in whole system.
         :param forum: forum obj.
@@ -49,6 +49,9 @@ class DzService():
                 session.flush()
                 link = DzLinkDict()
                 link.dzId = forum.fid
+                if not siteIdMatch:
+                    siteIdMatch = siteId
+                link.siteIdMatch = siteIdMatch
                 link.siteId = siteId
                 session.add(link)
                 dzId = link.dzId
@@ -58,7 +61,7 @@ class DzService():
                 dzId = -1 * link.dzId
         return dzId
 
-    def postDzThread(self, siteId, thread: DzForumThread) -> int:
+    def postDzThread(self, siteId, thread: DzForumThread, siteIdMatch=None) -> int:
         """postDzThread object.
         :param siteId: siteId for the object unique in whole system.
         :param thread: forum obj.
@@ -76,6 +79,9 @@ class DzService():
                 session.flush()
                 link = DzLinkDict()
                 link.dzId = thread.tid
+                if not siteIdMatch:
+                    siteIdMatch = siteId
+                link.siteIdMatch = siteIdMatch
                 link.siteId = siteId
                 session.add(link)
                 dzId = link.dzId
@@ -85,7 +91,7 @@ class DzService():
                 dzId = -1 * link.dzId
         return dzId
 
-    def postDzPost(self, siteId, post: DzForumPost) -> int:
+    def postDzPost(self, siteId, post: DzForumPost, siteIdMatch=None) -> int:
         """postDzPost object.
         :param siteId: siteId for the object unique in whole system.
         :param post: forum obj.
@@ -110,6 +116,9 @@ class DzService():
                 session.add(post)
                 link = DzLinkDict()
                 link.dzId = post.pid
+                if not siteIdMatch:
+                    siteIdMatch = siteId
+                link.siteIdMatch = siteIdMatch
                 link.siteId = siteId
                 session.add(link)
                 dzId = link.dzId
@@ -120,7 +129,7 @@ class DzService():
                 dzId = -1 * link.dzId
         return dzId
 
-    def postDzMember(self, siteId, member: DzCommonMember) -> int:
+    def postDzMember(self, siteId, member: DzCommonMember, siteIdMatch=None) -> int:
         """postDzMember object.
         :param siteId: siteId for the object unique in whole system.
         :param member: forum obj.
@@ -138,6 +147,9 @@ class DzService():
                 session.flush()
                 link = DzLinkDict()
                 link.dzId = member.uid
+                if not siteIdMatch:
+                    siteIdMatch = siteId
+                link.siteIdMatch = siteIdMatch
                 link.siteId = siteId
                 session.add(link)
                 dzId = link.dzId

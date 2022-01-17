@@ -18,6 +18,7 @@ Base = declarative_base()
 class DzLinkDict(Base):
     __tablename__ = 'dzlnk_dict'
     siteId = Column(String(255), primary_key=True, name="site_id")
+    siteIdMatch = Column(String(255), name="site_id_match")
     dzId = Column(Integer, name="dz_id")
     comment = Column(String(255))
     mod_date = Column(DateTime, default=datetime.now())

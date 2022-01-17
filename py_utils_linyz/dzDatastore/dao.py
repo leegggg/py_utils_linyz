@@ -15,7 +15,12 @@ import uuid
 Base = declarative_base()
 
 
-class DzLinkDict(Base):
+class BaseDao(Base):
+    def as_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+
+
+class DzLinkDict(BaseDao):
     """ddl
     CREATE TABLE `dzlnk_dict` (
         `site_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -47,7 +52,7 @@ class ForumTypeEnum(enum.Enum):
     sub = 3
 
 
-class DzForum(Base):
+class DzForum(BaseDao):
     __tablename__ = 'dz35_forum_forum'
     fid = Column(name="fid", type_=Integer, autoincrement=True)
     fup = Column(name="fup", type_=Integer, default=1)
@@ -107,7 +112,7 @@ class DzForum(Base):
     )
 
 
-class DzForumField(Base):
+class DzForumField(BaseDao):
     __tablename__ = 'dz35_forum_forumfield'
     fid = Column(name="fid", type_=Integer, default=0)
     description = Column(name="description", type_=TEXT)
@@ -164,7 +169,7 @@ class DzForumField(Base):
     )
 
 
-class DzForumThread(Base):
+class DzForumThread(BaseDao):
     __tablename__ = 'dz35_forum_thread'
 
     def __init__(self) -> None:
@@ -220,7 +225,7 @@ class DzForumThread(Base):
     )
 
 
-class DzForumPost(Base):
+class DzForumPost(BaseDao):
     __tablename__ = 'dz35_forum_post'
 
     def __init__(self) -> None:
@@ -264,7 +269,7 @@ class DzForumPost(Base):
     )
 
 
-class DzCommonMember(Base):
+class DzCommonMember(BaseDao):
     __tablename__ = 'dz35_common_member'
     uid = Column(name="uid", type_=Integer)
     email = Column(name="email", type_=String(255), default='')

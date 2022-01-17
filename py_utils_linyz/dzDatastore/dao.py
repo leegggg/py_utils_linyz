@@ -154,6 +154,12 @@ class DzForumField(Base):
 
 class DzForumThread(Base):
     __tablename__ = 'dz35_forum_thread'
+
+    def __init__(self) -> None:
+        super().__init__()
+        self.dateline = int(datetime.now().timestamp())
+        self.lastpost = int(datetime.now().timestamp())
+
     tid = Column(name="tid", type_=Integer, autoincrement=True)
     fid = Column(name="fid", type_=Integer, default=0)
     posttableid = Column(name="posttableid", type_=Integer, default=0)
@@ -162,11 +168,11 @@ class DzForumThread(Base):
     readperm = Column(name="readperm", type_=Integer, default=0)
     price = Column(name="price", type_=Integer, default=0)
     author = Column(name="author", type_=String(15), default='')
-    authorid = Column(name="authorid", type_=Integer, default=0)
+    authorid = Column(name="authorid", type_=Integer, default=1)
     subject = Column(name="subject", type_=String(255), default='')
     dateline = Column(name="dateline", type_=Integer, default=0)
     lastpost = Column(name="lastpost", type_=Integer, default=0)
-    lastposter = Column(name="lastposter", type_=String(15), default='')
+    lastposter = Column(name="lastposter", type_=String(15), default='admin')
     views = Column(name="views", type_=Integer, default=0)
     replies = Column(name="replies", type_=Integer, default=0)
     displayorder = Column(name="displayorder", type_=Integer, default=0)
@@ -182,7 +188,7 @@ class DzForumThread(Base):
     recommend_add = Column(name="recommend_add", type_=Integer, default=0)
     recommend_sub = Column(name="recommend_sub", type_=Integer, default=0)
     heats = Column(name="heats", type_=Integer, default=0)
-    status = Column(name="status", type_=Integer, default=0)
+    status = Column(name="status", type_=Integer, default=32)
     isgroup = Column(name="isgroup", type_=Integer, default=0)
     favtimes = Column(name="favtimes", type_=Integer, default=0)
     sharetimes = Column(name="sharetimes", type_=Integer, default=0)
@@ -204,6 +210,12 @@ class DzForumThread(Base):
 
 class DzForumPost(Base):
     __tablename__ = 'dz35_forum_post'
+
+    def __init__(self) -> None:
+        super().__init__()
+        self.dateline = int(datetime.now().timestamp())
+        self.lastpost = int(datetime.now().timestamp())
+
     pid = Column(name="pid", type_=Integer)
     fid = Column(name="fid", type_=Integer, default=0)
     tid = Column(name="tid", type_=Integer, default=0)

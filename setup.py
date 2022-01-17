@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import find_packages, setup
 
 setup(
     name='py_utils_linyz',
@@ -8,6 +8,7 @@ setup(
     author='LIN Yizhou',
     author_email='yizhou.lin@outlook.com',
     license='Apache 2.0',
+    packages=find_packages(),
     packages=['py_utils_linyz'],
     zip_safe=False,
     install_requires=[

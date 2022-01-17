@@ -57,7 +57,7 @@ class DzService():
                 dzId = link.dzId
         except IntegrityError as e:
             e
-            dzId = self.getDzIdBySiteId(self, siteId)
+            dzId = self.getDzIdBySiteId(siteId)
             if dzId:
                 dzId = -1 * link.dzId
             else:
@@ -90,7 +90,7 @@ class DzService():
                 dzId = link.dzId
         except IntegrityError as e:
             e
-            dzId = self.getDzIdBySiteId(self, siteId)
+            dzId = self.getDzIdBySiteId(siteId)
             if dzId:
                 dzId = -1 * link.dzId
             else:
@@ -130,7 +130,7 @@ class DzService():
                 dzId = link.dzId
         except IntegrityError as e:
             e
-            dzId = self.getDzIdBySiteId(self, siteId)
+            dzId = self.getDzIdBySiteId(siteId)
             if dzId:
                 dzId = -1 * link.dzId
             else:
@@ -162,7 +162,7 @@ class DzService():
                 dzId = link.dzId
         except IntegrityError as e:
             e
-            dzId = self.getDzIdBySiteId(self, siteId)
+            dzId = self.getDzIdBySiteId(siteId)
             if dzId:
                 dzId = -1 * link.dzId
             else:

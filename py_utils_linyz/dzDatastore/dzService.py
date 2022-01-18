@@ -56,10 +56,9 @@ class DzService():
                 session.add(link)
                 dzId = link.dzId
         except IntegrityError as e:
-            e
             dzId = self.getDzIdBySiteId(siteId)
             if dzId:
-                dzId = -1 * link.dzId
+                dzId = -1 * dzId
             else:
                 pass
         return dzId
@@ -89,10 +88,9 @@ class DzService():
                 session.add(link)
                 dzId = link.dzId
         except IntegrityError as e:
-            e
             dzId = self.getDzIdBySiteId(siteId)
             if dzId:
-                dzId = -1 * link.dzId
+                dzId = -1 * dzId
             else:
                 pass
         return dzId
@@ -129,10 +127,9 @@ class DzService():
                 session.add(link)
                 dzId = link.dzId
         except IntegrityError as e:
-            e
             dzId = self.getDzIdBySiteId(siteId)
             if dzId:
-                dzId = -1 * link.dzId
+                dzId = -1 * dzId
             else:
                 pass
         return dzId
@@ -161,10 +158,9 @@ class DzService():
                 session.add(link)
                 dzId = link.dzId
         except IntegrityError as e:
-            dzId = None
             dzId = self.getDzIdBySiteId(siteId)
             if dzId:
-                dzId = -1 * link.dzId
+                dzId = -1 * dzId
             else:
                 pass
         return dzId

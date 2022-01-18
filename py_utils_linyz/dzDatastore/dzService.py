@@ -161,7 +161,7 @@ class DzService():
                 session.add(link)
                 dzId = link.dzId
         except IntegrityError as e:
-            e
+            dzId = None
             dzId = self.getDzIdBySiteId(siteId)
             if dzId:
                 dzId = -1 * link.dzId

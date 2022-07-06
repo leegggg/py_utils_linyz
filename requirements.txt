@@ -6,3 +6,5 @@ htmlmin
 lxml
 sqlalchemy
 pymysql
+jieba
+opensearch-py

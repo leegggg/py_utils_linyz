@@ -17,6 +17,10 @@ setup(
         "selenium",
         "clint",
         "htmlmin",
-        "lxml"
+        "lxml",
+        "sqlalchemy",
+        "pymysql",
+        "jieba",
+        "opensearch-py"
     ]
 )

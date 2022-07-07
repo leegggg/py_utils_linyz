@@ -302,3 +302,21 @@ class DzCommonMember(BaseDao):
         PrimaryKeyConstraint('uid'),
         {},
     )
+
+
+class DzPostTableId(BaseDao):
+    __tablename__ = 'dz35_forum_post_tableid'
+
+    """
+    CREATE TABLE `dz35_forum_post_tableid` (
+    `pid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY (`pid`)
+    ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+    """
+
+    pid = Column(name="pid", type_=Integer, autoincrement=True)
+
+    __table_args__ = (
+        PrimaryKeyConstraint('pid'),
+        {},
+    )

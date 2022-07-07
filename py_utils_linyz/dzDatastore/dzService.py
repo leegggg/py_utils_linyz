@@ -1,6 +1,6 @@
 from datetime import datetime
 from threading import Thread
-from .dao import Base, DzCommonMember, DzForum, DzForumPost, DzForumThread, DzLinkDict
+from .dao import Base, DzCommonMember, DzForum, DzForumPost, DzForumThread, DzLinkDict, DzPostTableId
 import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -126,6 +126,9 @@ class DzService():
                 link.siteId = siteId
                 session.add(link)
                 dzId = link.dzId
+                postTableId = DzPostTableId()
+                postTableId.pid = post.pid
+                session.add(postTableId)
         except IntegrityError as e:
             dzId = self.getDzIdBySiteId(siteId)
             if dzId:

@@ -55,7 +55,7 @@ class SearchEngineClient():
             ts = datetime.now()
 
         if not tags:
-            tags = []
+            tags = fingerprint.split(",")
 
         if not tags_text:
             tags_text = ",".join(tags)
